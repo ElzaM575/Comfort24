@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
@@ -17,9 +17,8 @@ using Comfort24.Connection;
 
 namespace Comfort24.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для PartnerListPage.xaml
-    /// </summary>
+    /// 
+
     public partial class PartnerListPage : Page
     {
         List<Partners> allPartners;
@@ -72,7 +71,7 @@ namespace Comfort24.Pages
 
             var result = allPartners.AsEnumerable();
 
-            // Search
+            
             if (!string.IsNullOrWhiteSpace(SearchBox.Text))
             {
                 string searchText = SearchBox.Text.ToLower();
@@ -84,7 +83,7 @@ namespace Comfort24.Pages
                 );
             }
 
-            // Filter
+            
             if (FilterCombo.SelectedItem is TypeOfBusiness selectedType)
             {
                 result = result.Where(x => x.Id_type == selectedType.Id_type);
@@ -108,7 +107,7 @@ namespace Comfort24.Pages
                         DBConnection.comfort.Partners.Remove(selectedPartner);
                         DBConnection.comfort.SaveChanges();
 
-                        // Refresh data
+                        
                         allPartners = DBConnection.comfort.Partners.ToList();
                         ApplySearchAndFilter();
 
